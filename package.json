@@ -1,0 +1,92 @@
+{
+  "name": "gb18030-terminal",
+  "displayName": "GB18030 Terminal",
+  "description": "GB18030 terminal encoding converter",
+  "version": "0.0.1",
+  "icon": "icon.png",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wangxiaobai-dd/GB18030-Terminal.git"
+  },
+  "engines": {
+    "vscode": "^1.100.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "gb18030-terminal.open",
+        "title": "Open GB18030 Terminal"
+      }
+    ],
+    "configuration": {
+      "properties": {
+        "gb18030-terminal.autoConnect": {
+          "type": "boolean",
+          "default": true,
+          "description": "启动时自动连接第一个服务器"
+        },
+        "gb18030-terminal.autoReconnect": {
+          "type": "boolean",
+          "default": true,
+          "description": "断开后自动重连"
+        },
+        "gb18030-terminal.autoReconnectDelay": {
+          "type": "number",
+          "default": 3,
+          "description": "自动重连延迟（秒）"
+        },
+        "gb18030-terminal.servers": {
+          "type": "array",
+          "default": [],
+          "description": "服务器列表，格式示例：[{\"host\":\"192.168.1.100\",user\":\"root\",\"password\":\"123456\"}]",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "服务器名称"
+              },
+              "host": {
+                "type": "string",
+                "description": "服务器地址"
+              },
+              "user": {
+                "type": "string",
+                "description": "用户名"
+              },
+              "password": {
+                "type": "string",
+                "description": "密码"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "pretest": "npm run lint",
+    "test": "vscode-test"
+  },
+  "dependencies": {
+    "iconv-lite": "^0.6.3",
+    "ssh2": "^1.17.0"
+  },
+  "devDependencies": {
+    "@types/mocha": "^10.0.10",
+    "@types/node": "22.x",
+    "@types/vscode": "^1.100.0",
+    "@vscode/test-cli": "^0.0.12",
+    "@vscode/test-electron": "^2.5.2",
+    "@vscode/vsce": "^3.0.0",
+    "eslint": "^9.39.3"
+  }
+}
